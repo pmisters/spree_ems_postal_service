@@ -35,8 +35,14 @@ class Calculator::EmsPostalService < Calculator
     end
     puts "Weight: #{total_weight}" if debug
 
+    shipping = calculate_price_for total_weight
+    puts "Shipping: #{shipping}" if debug
+    return shipping
+  end
+  
+  def calculate_price_for(weight)
     shipping = 0
-    case total_weight
+    case weight
     when 0..0.25
       shipping = self.preferred_price_250
     when 0.25..0.5
@@ -44,10 +50,8 @@ class Calculator::EmsPostalService < Calculator
     when 0.5..1
       shipping = self.preferred_price_1000
     else
-      shipping = self.preferred_price_1000 + self.preferred_price_additional * additional_packs(total_weight)
+      shipping = self.preferred_price_1000 + self.preferred_price_additional * additional_packs(weight)
     end
-    puts "Shipping: #{shipping}" if debug
-    puts "Handling: #{self.preferred_handling_tax}" if debug
     return shipping + self.preferred_handling_tax
   end
 end
