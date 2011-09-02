@@ -15,7 +15,7 @@ begin
     if zone.nil?
       zone_member = ZoneMember.new
       zone_member.zoneable_type = "Country"
-      zone_member.zoneable_id = country
+      zone_member.zoneable_id = country.id
       
       zone = Zone.new
       zone.name = price[:country]
