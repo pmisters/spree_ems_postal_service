@@ -9,7 +9,7 @@ class Calculator::EmsPostalService < Calculator
   WEIGHT_STEP = 0.5
   
   def self.description
-    "Expedited Mail Service"
+    "Sri Lanka Mail Service"
   end
   
   def self.register
